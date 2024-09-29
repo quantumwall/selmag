@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>[[${product.id}]]</title>
+</head>
+<body>
+    <h1>
+        Product <span data-th-text="${product.id}"></span>
+    </h1>
+    <ul>
+        <li><strong>Id: </strong><span data-th-text="${product.id}"></span></li>
+        <li><strong>Title: </strong><span data-th-text="${product.title}"></span></li>
+        <li><strong>Details: </strong><span data-th-text="${product.details}"></span></li>
+    </ul>
+</body>
+</html>

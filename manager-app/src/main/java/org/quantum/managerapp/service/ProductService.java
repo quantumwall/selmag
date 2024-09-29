@@ -9,4 +9,6 @@ public interface ProductService {
     Collection<Product> findAll();
 
     Product create(String title, String description);
+
+    Product getProduct(Long id);
 }

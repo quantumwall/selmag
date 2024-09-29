@@ -2,6 +2,8 @@ package org.quantum.managerapp.repository;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import org.quantum.managerapp.model.Product;
@@ -31,6 +33,11 @@ public class InMemoryProductRepository implements ProductRepository {
 	logger.info("Saving product: {}", product);
 	products.add(product);
 	return product;
+    }
+
+    @Override
+    public Optional<Product> findById(Long id) {
+	return products.stream().filter(product -> Objects.equals(product.getId(), id)).findAny();
     }
 
 }
