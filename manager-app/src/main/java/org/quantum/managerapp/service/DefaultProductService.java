@@ -18,4 +18,9 @@ public class DefaultProductService implements ProductService {
     public Collection<Product> findAll() {
 	return productRepository.findAll();
     }
+
+    @Override
+    public Product create(String title, String description) {
+	return productRepository.save(new Product(null, title, description));
+    }
 }
