@@ -8,6 +8,7 @@
     <h1>
         Product <span data-th-text="${product.id}"></span>
     </h1>
+    <p><a data-th-href="@{/catalogue/products/{id}/edit(id=${product.id})}">Edit</a></p>
     <ul>
         <li><strong>Id: </strong><span data-th-text="${product.id}"></span></li>
         <li><strong>Title: </strong><span data-th-text="${product.title}"></span></li>
