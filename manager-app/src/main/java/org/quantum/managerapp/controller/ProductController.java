@@ -28,15 +28,21 @@ public class ProductController {
     public String getProduct() {
 	return "catalogue/products/product";
     }
-    
+
     @GetMapping("edit")
     public String getEditProductPage() {
 	return "catalogue/products/edit";
     }
-    
-    @PostMapping
+
+    @PostMapping("update")
     public String updateProduct(@ModelAttribute Product product, UpdateProductDto updateDto) {
 	productService.update(product.getId(), updateDto.title(), updateDto.details());
+	return "redirect:/catalogue/products/list";
+    }
+
+    @PostMapping("delete")
+    public String deleteProduct(@ModelAttribute Product product) {
+	productService.delete(product.getId());
 	return "redirect:/catalogue/products/list";
     }
 }

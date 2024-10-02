@@ -6,6 +6,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+import org.quantum.managerapp.exception.ProductNotFoundException;
 import org.quantum.managerapp.model.Product;
 import org.springframework.stereotype.Repository;
 
@@ -34,6 +35,12 @@ public class InMemoryProductRepository implements ProductRepository {
     @Override
     public Optional<Product> findById(Long id) {
 	return products.stream().filter(product -> Objects.equals(product.getId(), id)).findAny();
+    }
+
+    @Override
+    public void delete(Long id) {
+	products.stream().filter(product -> Objects.equals(product.getId(), id)).findAny()
+		.ifPresentOrElse(product -> products.remove(product), () -> new ProductNotFoundException());
     }
 
 }

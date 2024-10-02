@@ -45,4 +45,9 @@ public class DefaultProductService implements ProductService {
 	    product.setDetails(details);
 	}, () -> new ProductNotFoundException("Product id%d not found".formatted(id)));
     }
+
+    @Override
+    public void delete(Long id) {
+	productRepository.delete(id);
+    }
 }

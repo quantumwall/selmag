@@ -13,4 +13,6 @@ public interface ProductService {
     Product getProduct(Long id);
 
     void update(Long id, String title, String details);
+
+    void delete(Long id);
 }

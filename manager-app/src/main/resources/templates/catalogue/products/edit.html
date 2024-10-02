@@ -6,7 +6,7 @@
 </head>
 <body>
 	<h1>Edit product <span data-th-text="${product.id}"></span></h1>
-	<form method="post" data-th-action="@{/catalogue/products/{id}(id=${product.id})}">
+	<form method="post" data-th-action="@{/catalogue/products/{id}/update(id=${product.id})}">
 		<label>
 			Title: <br />
 			<input type="text" name="title" data-th-value="${product.title}" />
