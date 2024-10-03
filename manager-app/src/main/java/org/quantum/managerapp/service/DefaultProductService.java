@@ -34,7 +34,7 @@ public class DefaultProductService implements ProductService {
     public Product getProduct(Long id) {
 	logger.info("find product: {}", id);
 	return productRepository.findById(id)
-				.orElseThrow(() -> new ProductNotFoundException("Product id %d not found".formatted(id)));
+				.orElseThrow(() -> new ProductNotFoundException("catalogue.exceptions.products.not_found"));
     }
 
     @Override
@@ -43,7 +43,7 @@ public class DefaultProductService implements ProductService {
 	    logger.info("update product {} with title: {}, details: {}", id, title, details);
 	    product.setTitle(title);
 	    product.setDetails(details);
-	}, () -> new ProductNotFoundException("Product id%d not found".formatted(id)));
+	}, () -> new ProductNotFoundException("catalogue.exceptions.products.not_found"));
     }
 
     @Override

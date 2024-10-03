@@ -40,7 +40,8 @@ public class InMemoryProductRepository implements ProductRepository {
     @Override
     public void delete(Long id) {
 	products.stream().filter(product -> Objects.equals(product.getId(), id)).findAny()
-		.ifPresentOrElse(product -> products.remove(product), () -> new ProductNotFoundException());
+		.ifPresentOrElse(product -> products.remove(product),
+				 () -> new ProductNotFoundException("catalogue.exceptions.products.not_found"));
     }
 
 }

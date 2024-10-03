@@ -1,9 +1,12 @@
 package org.quantum.managerapp.controller;
 
+import java.util.Locale;
+
 import org.quantum.managerapp.dto.UpdateProductDto;
 import org.quantum.managerapp.exception.ProductNotFoundException;
 import org.quantum.managerapp.model.Product;
 import org.quantum.managerapp.service.ProductService;
+import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +26,7 @@ import lombok.RequiredArgsConstructor;
 public class ProductController {
 
     private final ProductService productService;
+    private final MessageSource messageSource;
 
     @ModelAttribute("product")
     public Product product(@PathVariable Long productId) {
@@ -52,9 +56,13 @@ public class ProductController {
     }
 
     @ExceptionHandler(ProductNotFoundException.class)
-    public String handleProductNotFoundException(Throwable exception, Model model, HttpServletResponse response) {
-	model.addAttribute("error", exception);
+    public String handleProductNotFoundException(ProductNotFoundException exception,
+						 Model model,
+						 HttpServletResponse response,
+						 Locale locale) {
+	model.addAttribute("error", messageSource.getMessage(exception.getMessage(), new Object[0],
+							     exception.getMessage(), locale));
 	response.setStatus(HttpStatus.NOT_FOUND.value());
-	return "errors/not_found";
+	return "errors/404";
     }
 }
